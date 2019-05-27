@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -23,6 +25,10 @@ android {
 }
 
 dependencies {
+
+    def lifecyle_version = "2.0.0"
+    def supportVersion = "1.0.0"
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -31,4 +37,28 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation "androidx.recyclerview:recyclerview:$supportVersion"
+    implementation "androidx.cardview:cardview:$supportVersion"
+
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    // LiveData + ViewModel
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecyle_version"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecyle_version"
+
+    // Navigation
+    def nav_version = "2.1.0-alpha04"
+
+    implementation "androidx.navigation:navigation-fragment:$nav_version"
+    implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    // Room
+
+    def room_version = "2.1.0-alpha07"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
 }
